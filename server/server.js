@@ -54,6 +54,7 @@ app.post('/register',(req,res)=>{
 // route for login 
 
 app.post('/login',(req,res)=>{
+    console.log(req.body)
     User.findOne({email:req.body.email})
         .then(user_res=>{
             if(user_res){
@@ -86,6 +87,7 @@ app.get('/me',(req,res)=>{
             }
         }).catch(err=>console.log(err))
 })
+
 
 app.post('/postbook',(req,res)=>{
     console.log(req.body)

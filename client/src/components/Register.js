@@ -1,5 +1,5 @@
 import React from 'react'
-
+import axios from 'axios'
 class Register extends React.Component{
     constructor(){
         super()
@@ -13,7 +13,19 @@ class Register extends React.Component{
     }
     handleRegister = e =>{
         e.preventDefault()
-        alert('register')
+        if(this.state.email&&this.state.full_name&&this.state.room_no && this.state.password && this.state.confirm_password){
+            if(this.state.password === this.state.confirm_password){
+                axios.post('http://localhost:5000/register',{
+                    name:this.state.full_name,
+                    email:this.state.email,
+                    room_no:this.state.room_no,
+                    password:this.state.password
+                }).then(res=>{
+                    console.log(res.data)
+                    this.props.history.push('/')
+                }).catch(err=>console.log(err))
+            }
+        }
     }
 render(){
     return(
