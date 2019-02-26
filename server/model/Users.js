@@ -17,7 +17,8 @@ const UserSchema = new Schema ({
   password: {
     type: String,
     required: true
-  }
+  },
+  myrequestedbook:[]
 })
 
 // var User = mongoose.model('User', UserSchema)

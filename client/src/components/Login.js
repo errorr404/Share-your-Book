@@ -15,7 +15,8 @@ class Login extends React.Component {
             password:this.state.password
         }).then(res=>{
             console.log(res.data)
-            localStorage.setItem('token',res.data.id)
+            localStorage.setItem('token',res.data)
+            localStorage.setItem('email',this.state.email)
             this.props.history.push('/')
         }).catch(err=>console.log(err))
     }
