@@ -7,6 +7,25 @@ class Mybooks extends React.Component {
             books:[]
         }
     }
+    handleAcceptRequest = (id,email)=>{
+        axios.put('http://localhost:5000/updatebookrequest',{
+            id:id,
+            isAccept:true,
+            email:email
+        }).then(res=>{
+            console.log(res.data)
+        }).catch(err=>console.log(err))
+    }
+
+    handleRejectRequest = (id,email) =>{
+        axios.put('http://localhost:5000/updatebookrequest',{
+            id:id,
+            isAccept:false,
+            email:email
+        }).then(res=>{
+            console.log(res.data)
+        }).catch(err=>console.log(err))
+    }
    componentDidMount(){
        console.log('in component did mount')
        axios.get('http://localhost:5000/getmybook',{
@@ -26,6 +45,7 @@ class Mybooks extends React.Component {
                      return <div>
                          {
                             <div>
+                                <h5>my books</h5>
                                 <h5>{book.name}</h5>
                                 {
                                     book.requested.length===0?<p>No request found</p>
@@ -34,7 +54,7 @@ class Mybooks extends React.Component {
                                         return <div> 
                                             <p>{request.email}</p>
                                             {
-                                                request.isAccepted?<button>Reject</button>:<button>Accept</button>
+                                                request.isAccepted?<button onClick={e=>this.handleRejectRequest(book._id,request.email)}>Reject</button>:<button onClick={e=>this.handleAcceptRequest(book._id,request.email)}>Accept</button>
                                             }
                                         </div>
                                     })
@@ -48,5 +68,6 @@ class Mybooks extends React.Component {
         )
     }
 }
+
 
 export default Mybooks

@@ -212,7 +212,7 @@ app.put('/request',(req,res)=>{
             SharableBooks.findByIdAndUpdate(_id,{ $push:{"requested":{"email":req.body.email,"isAccepted":false}}}).then(book=>{
                 // console.log(book)
                 res.status(200).send(book)
-                User.findOneAndUpdate({"email":req.body.email},{$push:{"myrequestedbook":{"book_name":book.book_name}}}).then(user=>{
+                User.findOneAndUpdate({"email":req.body.email},{$push:{"myrequestedbook":{"book_name":book.book_name,"isAccepted":false}}}).then(user=>{
                     console.log('')
                 })
             }).catch(err=>console.log(err))
@@ -222,6 +222,38 @@ app.put('/request',(req,res)=>{
         
     })
 
+
+
+})
+
+app.put('/updatebookrequest',(req,res)=>{
+    console.log(req.body)
+    var requested=[]
+    SharableBooks.findById(req.body.id).then(book=>{
+        console.log(book)
+        book.requested.map(obj=>{
+            if(obj.email===req.body.email){
+                requested.push({"email":obj.email,"isAccepted":req.body.isAccept})
+            }
+            else{
+                requested.push(obj)
+            }
+        })
+        SharableBooks.findByIdAndUpdate(req.body.id,{ $set:{
+            requested:requested
+        }}).then(updated_book=>{
+            console.log(updated_book)
+            return res.status(200).send({"message":"updated"})
+        })
+        // console.log(requested)
+    }).catch(err=>console.log(err))
+})
+
+app.get('/getmyrequestedbook',(req,res)=>{
+    User.findOne({email:req.query.email}).then(books=>{
+        // console.log(books)
+        return res.status(200).send(books.myrequestedbook)
+    }).catch(err=>console.log(err))
 })
 
 app.listen(5000,()=>console.log('server is up'))
