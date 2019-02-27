@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import {Link } from "react-router-dom";
+import { Form,Button } from 'react-bootstrap';
 class Register extends React.Component{
     constructor(){
         super()
@@ -22,22 +24,40 @@ class Register extends React.Component{
                     password:this.state.password
                 }).then(res=>{
                     console.log(res.data)
-                    this.props.history.push('/')
+                    this.props.history.push('/login')
                 }).catch(err=>console.log(err))
             }
         }
     }
 render(){
     return(
-        <div>
-            <form onSubmit={this.handleRegister}>
-                <input placeholder="enter the email id" onChange={e=>this.setState({email:e.target.value})}/>
-                <input placeholder="enter your full name" onChange={e=>this.setState({full_name:e.target.value})}/>
-                <input placeholder="enter your Room number" onChange={e=>this.setState({room_no:e.target.value})}/>
-                <input placeholder="enter the password" onChange={e=>this.setState({password:e.target.value})}/>
-                <input placeholder="enter the confirm password" onChange={e=>this.setState({confirm_password:e.target.value})}/>
-                <button>Register!!</button>
-            </form>
+        <div style={{width:"30rem"}}>
+            <Form onSubmit={this.handleRegister}>
+            <Form.Group controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" placeholder="Enter email" onChange={e=>this.setState({email:e.target.value})}/>
+            </Form.Group>
+            <Form.Group controlId="formBasicName">
+                <Form.Label>Full Name</Form.Label>
+                <Form.Control type="text" placeholder="Enter your full name" onChange={e=>this.setState({full_name:e.target.value})}/>
+            </Form.Group>
+            <Form.Group controlId="formBasicRoom">
+                <Form.Label>Room number</Form.Label>
+                <Form.Control type="number" placeholder="Enter your room number" onChange={e=>this.setState({room_no:e.target.value})}/>
+            </Form.Group>
+            <Form.Group controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" placeholder=" Enter your Password"  onChange={e=>this.setState({password:e.target.value})}/>
+                </Form.Group>
+                <Form.Group controlId="formBasicPassword">
+                    <Form.Label> Confirm Password</Form.Label>
+                    <Form.Control type="password" placeholder="Enter your password agian"  onChange={e=>this.setState({confirm_password:e.target.value})}/>
+                </Form.Group>
+                <Button variant="primary" type="submit">
+                    Create an Account!!
+                </Button>
+            </Form>
+            <Link to="/login">Go to login page!!</Link>
         </div>
     )
 }

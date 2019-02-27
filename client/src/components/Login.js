@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import {Link } from "react-router-dom";
+import { Form,Button } from 'react-bootstrap';
 class Login extends React.Component {
     constructor(){
         super()
@@ -26,14 +28,22 @@ class Login extends React.Component {
     }
     render(){
         console.log(this.state)
-        return(
-            <div>
-                <form onSubmit={this.handleLogin}>
-                    <input placeholder="enter your email" type="text" onChange={(e)=>this.setState({email:e.target.value})}/>
-                    <input placeholder="enter password" type="text" onChange={(e)=>this.setState({password:e.target.value})}/>
-                    <button>Login!</button>
-                </form>
-                <p onClick={this.handleAccount}>create an account </p>
+        return( 
+            <div style={{width:"30rem"}}>
+            <Form onSubmit={this.handleLogin}>
+                <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control type="email" placeholder="Enter email" onChange={(e)=>this.setState({email:e.target.value})}/>
+                </Form.Group>
+                <Form.Group controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" placeholder="Password"  onChange={(e)=>this.setState({password:e.target.value})}/>
+                </Form.Group>
+                <Button variant="primary" type="submit">
+                    Login!!
+                </Button>
+            </Form>
+            <Link to="/register">Create an account!!</Link>
             </div>
         )
     }

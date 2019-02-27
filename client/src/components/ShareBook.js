@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Form,Button } from 'react-bootstrap';
 class ShareBook extends React.Component {
     constructor(){
         super()
@@ -26,6 +27,17 @@ class ShareBook extends React.Component {
             if(res.status===201) return alert('already exist')
             if(res.data.data){
             //   this.setState({books:res.data.data})
+            this.setState({
+                name:'',
+                room_no:'',
+                email:'',
+                book_name:'',
+                author:'',
+                desciption:''
+            },()=>{
+                alert('thanks for sharing the book!!')
+            })
+           
             }
           }).catch(err=>console.log(err))
     }
@@ -47,13 +59,27 @@ class ShareBook extends React.Component {
     render(){
         console.log('in share book',this.state)
         return(
-            <div>
-                <form onSubmit={this.handleShare}>
-                    <input placeholder="enter book title" onChange={e=>this.setState({book_name:e.target.value})}/>
-                    <input placeholder="enter Author name" onChange={e=>this.setState({author:e.target.value})}/>
-                    <textarea value={this.state.desciption} onChange={e=>this.setState({desciption:e.target.value})}/>
-                    <button>Share!!</button>
-                </form>
+            <div style={{width:"30rem"}}>
+                <Form onSubmit={this.handleShare}>
+                    <Form.Group controlId="formBasicText">
+                        <Form.Label>Title:</Form.Label>
+                        <Form.Control type="text" placeholder="Enter the tiitle of the book" value={this.state.book_name} onChange={e=>this.setState({book_name:e.target.value})}/>
+                    </Form.Group>
+                    <Form.Group controlId="formBasicAuthor">
+                        <Form.Label>Author:</Form.Label>
+                        <Form.Control type="text" placeholder="Enter the name of the Author"  value={this.state.author} onChange={e=>this.setState({author:e.target.value})}/>
+                    </Form.Group>
+                    <Form.Group controlId="formBasicDesc">
+                        <Form.Label>Description</Form.Label>
+                        <Form.Control type="text" placeholder="write some description"  value={this.state.desciption} onChange={e=>this.setState({desciption:e.target.value})}/>
+                        <Form.Text className="text-muted">
+                        Write few lines about the book :)
+                        </Form.Text>
+                    </Form.Group>
+                    <Button variant="primary" type="submit">
+                    Share with people!!
+                      </Button>
+                    </Form>
             </div>
         )
     }

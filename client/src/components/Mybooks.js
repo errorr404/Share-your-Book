@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Button } from 'react-bootstrap';
 class Mybooks extends React.Component {
     constructor(){
         super()
@@ -39,23 +40,37 @@ class Mybooks extends React.Component {
     render(){
         console.log('in mybooks',this.state.books)
         return(
-            <div>
-                {
+            <div style={{width:"100%",height:"500px",padding:"10px",border:"2px solid red"}}>
+                {this.state.books.length===0?<h5>No data</h5>:
                     this.state.books.map(book=>{
                      return <div>
                          {
                             <div>
-                                <h5>my books</h5>
-                                <h5>{book.name}</h5>
+                                <div className="container">
+                                    <div className="row">
+                                    <h5 className="col-6">Book title:</h5>
+                                <h5 className="col-6">{book.book_name}</h5>
+                                     </div>
+                                </div>
+                                
                                 {
-                                    book.requested.length===0?<p>No request found</p>
+                                    book.requested.length===0?<p style={{border:"1px solid black"}}>No request found</p>
                                     :
                                     book.requested.map(request=>{
-                                        return <div> 
-                                            <p>{request.email}</p>
-                                            {
-                                                request.isAccepted?<button onClick={e=>this.handleRejectRequest(book._id,request.email)}>Reject</button>:<button onClick={e=>this.handleAcceptRequest(book._id,request.email)}>Accept</button>
-                                            }
+                                        return <div style={{border:"1px solid black"}}> 
+                                            <div className="container">
+                                                <div className="row">
+                                                    <h5 className="col-6">Email:</h5>
+                                                    <p className="col-6">{request.email}</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div className="container">
+                                                <div className="row">
+                                            <Button className="col-6" variant="primary" onClick={e=>this.handleRejectRequest(book._id,request.email)} disabled={!request.isAccepted}>Reject</Button>
+                                            <Button className="col-6" variant="primary" onClick={e=>this.handleAcceptRequest(book._id,request.email)} disabled={request.isAccepted}>Accept</Button>
+                                            </div>
+                                            </div>
                                         </div>
                                     })
                                 }

@@ -199,6 +199,7 @@ app.put('/request',(req,res)=>{
         console.log(book.requested)
         if(book){
             let obj = book.requested.find(o => o.email === req.body.email);
+            // console.log()
             if(obj)
             {
                 return res.status(203).send({"message":"already requested"})
