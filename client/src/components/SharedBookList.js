@@ -28,7 +28,12 @@ class SharedBookList extends React.Component{
             id:id
           }).then(res=>{
             if(res){
-              alert('thanks for liking the post')
+              axios.get('http://localhost:5000/getbooks').then(res=>{
+                var books = res.data
+                // console.log(books)
+                this.setState({books:books})
+                // console.log(res.data)
+              })
             }
           }).catch(err=>console.log(err))
       }
@@ -39,7 +44,12 @@ class SharedBookList extends React.Component{
           id:id
         }).then(res=>{
           if(res){
-            alert('thanks for disliking the post')
+            axios.get('http://localhost:5000/getbooks').then(res=>{
+              var books = res.data
+              // console.log(books)
+              this.setState({books:books})
+              // console.log(res.data)
+            })
           }
         }).catch(err=>console.log(err))
       }
@@ -108,8 +118,11 @@ class SharedBookList extends React.Component{
                           </div>
                           </div>
                           </div>
+                          {
+                            this.state.currentEmail===book.email?'':
+                            <Button variant="primary"  onClick={e=>this.handleRequest(book._id)}>Request the book</Button>
+                          }
                           
-                          <Button variant="primary" disabled={this.state.currentEmail===book.email?true:false} onClick={e=>this.handleRequest(book._id)}>Request the book</Button>
                         </Card.Body>
                       
                       </Card>

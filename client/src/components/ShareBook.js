@@ -36,6 +36,7 @@ class ShareBook extends React.Component {
                 desciption:''
             },()=>{
                 alert('thanks for sharing the book!!')
+                this.forceUpdate()
             })
            
             }

@@ -15,6 +15,13 @@ class Mybooks extends React.Component {
             email:email
         }).then(res=>{
             console.log(res.data)
+            axios.get('http://localhost:5000/getmybook',{
+                params: {
+                  email:localStorage.getItem('email')
+                }
+              }).then(res=>{
+                this.setState({books:res.data})
+               })
         }).catch(err=>console.log(err))
     }
 
@@ -25,6 +32,13 @@ class Mybooks extends React.Component {
             email:email
         }).then(res=>{
             console.log(res.data)
+            axios.get('http://localhost:5000/getmybook',{
+                params: {
+                  email:localStorage.getItem('email')
+                }
+              }).then(res=>{
+                this.setState({books:res.data})
+               })
         }).catch(err=>console.log(err))
     }
    componentDidMount(){
