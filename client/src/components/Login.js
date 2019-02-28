@@ -29,7 +29,7 @@ class Login extends React.Component {
     render(){
         console.log(this.state)
         return( 
-            <div style={{width:"30rem"}}>
+            <div style={{ fontFamily: "'Kaushan Script', cursive", fontSize: "25px" }}>
             <Form onSubmit={this.handleLogin}>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>

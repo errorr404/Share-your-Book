@@ -59,7 +59,7 @@ class ShareBook extends React.Component {
     render(){
         console.log('in share book',this.state)
         return(
-            <div>
+            <div style={{ fontFamily: "'Kaushan Script', cursive", fontSize: "25px",paddingLeft:"33%",paddingTop:"15%",color:"#d39e00" }}>
                 {
                     localStorage.getItem('token')?
                     <div style={{width:"30rem"}}>

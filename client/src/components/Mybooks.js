@@ -54,10 +54,10 @@ class Mybooks extends React.Component {
     render(){
         console.log('in mybooks',this.state.books)
         return(
-            <div>
+            <div style={{color:"#d39e00"}}>
                 {
                     localStorage.getItem('token')?
-                    <div style={{width:"100%",height:"100%",padding:"10px",border:"2px solid red"}}>
+                    <div style={{width:"100%",height:"100%",padding:"10px"}}>
                     {this.state.books.length===0?<h5>No data</h5>:
                         this.state.books.map(book=>{
                          return <div>
@@ -71,10 +71,10 @@ class Mybooks extends React.Component {
                                     </div>
                                     
                                     {
-                                        book.requested.length===0?<p style={{border:"1px solid black"}}>No request found</p>
+                                        book.requested.length===0?<p style={{border:"1px solid #fff"}}>No request found</p>
                                         :
                                         book.requested.map(request=>{
-                                            return <div style={{border:"1px solid black"}}> 
+                                            return <div style={{border:"1px solid #fff",fontFamily: "'Kaushan Script', cursive", fontSize: "25px",color:"#d39e00" }}> 
                                                 <div className="container">
                                                     <div className="row">
                                                         <h5 className="col-6">Email:</h5>
@@ -87,8 +87,9 @@ class Mybooks extends React.Component {
                                                         request.isAccepted==="first"?
                                                         <div className="row">
                                                    
-                                                        <Button className="col-6" variant="primary" onClick={e=>this.handleRejectRequest(book._id,request.email)} >Reject</Button>
-                                                        <Button className="col-6" variant="primary" onClick={e=>this.handleAcceptRequest(book._id,request.email)}>Accept</Button>
+                                                        <Button className="col-2" variant="primary"style={{float:"left",paddingLeft:"10%",textAlign:"center"}} onClick={e=>this.handleRejectRequest(book._id,request.email)} >Reject</Button>
+                                                        <div className="col-8"></div>
+                                                        <Button className="col-2" variant="primary" style={{float:"right",paddingRight:"10%",textAlign:"center"}} onClick={e=>this.handleAcceptRequest(book._id,request.email)}>Accept</Button>
                                                         </div>
                                                         :
                                                         request.isAccepted===true?

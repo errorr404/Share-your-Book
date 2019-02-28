@@ -45,10 +45,10 @@ class Myrequest extends React.Component {
     }
     render(){
         return(
-            <div>
+            <div style={{ fontFamily: "'Kaushan Script', cursive", fontSize: "25px",paddingLeft:"15%",paddingRight:"15px",color:"#d39e00"}}>
                 {
                     localStorage.getItem('token')?
-                    <div style={{border:"2px solid red"}}>
+                    <div >
                     <div className="container">
                         <div className="row">
                             <h5 className="col-6">Book Name</h5>

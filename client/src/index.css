@@ -1,12 +1,13 @@
 body {
   margin: 25px;
   padding: 50px;
-  padding-left: 33%;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("background.png");
+  background-attachment: fixed;
 }
 
 code {

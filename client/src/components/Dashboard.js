@@ -43,10 +43,10 @@ class Dashboard extends React.Component {
           //   </div>
           //   }
           // </div>
-          <div>
+          <div style={{fontFamily:"'Pacifico', cursive",fontSize:"25px"}}>
               <Navbar bg="light" variant="light" fixed="top">
-    <Navbar.Brand className="mr-auto">
-    <i className="fas fa-book-open"> Book World</i>
+    <Navbar.Brand className="mr-auto" style={{fontFamily:"'Pacifico', cursive",fontSize:"25px"}}>
+    Book World
     </Navbar.Brand>
     {/* <Nav className="mr-auto">
       <Nav.Link href="booklist">Shared Book</Nav.Link>
