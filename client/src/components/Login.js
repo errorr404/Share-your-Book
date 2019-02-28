@@ -29,7 +29,8 @@ class Login extends React.Component {
     render(){
         console.log(this.state)
         return( 
-            <div style={{ fontFamily: "'Kaushan Script', cursive", fontSize: "25px" }}>
+            <div style={{ fontFamily: "'Kaushan Script', cursive", fontSize: "25px",paddingLeft:"30%",paddingTop:"10%",color:"#d39e00",position:"absolute"}}>
+            <div style={{ width:"30rem"}}>
             <Form onSubmit={this.handleLogin}>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
@@ -44,6 +45,7 @@ class Login extends React.Component {
                 </Button>
             </Form>
             <Link to="/register">Create an account!!</Link>
+            </div>
             </div>
         )
     }

@@ -31,7 +31,8 @@ class Register extends React.Component{
     }
 render(){
     return(
-        <div style={{width:"30rem"}}>
+        <div style={{ fontFamily: "'Kaushan Script', cursive", fontSize: "25px",paddingLeft:"30%",paddingTop:"10%",color:"#d39e00",position:"absolute"}}>
+            <div style={{ width:"30rem"}}>
             <Form onSubmit={this.handleRegister}>
             <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
@@ -58,6 +59,7 @@ render(){
                 </Button>
             </Form>
             <Link to="/login">Go to login page!!</Link>
+            </div>
         </div>
     )
 }
