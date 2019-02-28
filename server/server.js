@@ -210,7 +210,7 @@ app.put('/request',(req,res)=>{
             // current.push(req.body.email)
             // var requested = current
             // console.log('disliked in book ',requested)
-            SharableBooks.findByIdAndUpdate(_id,{ $push:{"requested":{"email":req.body.email,"isAccepted":false}}}).then(book=>{
+            SharableBooks.findByIdAndUpdate(_id,{ $push:{"requested":{"email":req.body.email,"isAccepted":"first"}}}).then(book=>{
                 // console.log(book)
                 res.status(200).send(book)
                 User.findOneAndUpdate({"email":req.body.email},{$push:{"myrequestedbook":{"book_name":book.book_name,"isAccepted":false}}}).then(user=>{

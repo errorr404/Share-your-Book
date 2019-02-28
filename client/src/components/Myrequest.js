@@ -45,27 +45,39 @@ class Myrequest extends React.Component {
     }
     render(){
         return(
-            <div style={{border:"2px solid red"}}>
-            <div className="container">
-                <div className="row">
-                    <h5 className="col-6">Book Name</h5>
-                    <h5 className="col-6">Status</h5>
-                </div>
-            </div>
-               {
-                   this.state.myBooks.length===0?<h5>No data</h5>:
-                   this.state.myBooks.map((book,idx)=>{
-                      return <div className="container">
-                      <div className="row">
-                       <h5 className="col-6"key={idx}>{book.book_name}</h5>
-                      <p className="col-6">
-                          {book.isAccepted===true?<p>Accepted</p>:<p>Pending</p>}
-                      </p>
-                      </div>
-                      </div>
-                   })
-               }
-            </div>
+            <div>
+                {
+                    localStorage.getItem('token')?
+                    <div style={{border:"2px solid red"}}>
+                    <div className="container">
+                        <div className="row">
+                            <h5 className="col-6">Book Name</h5>
+                            <h5 className="col-6">Status</h5>
+                        </div>
+                    </div>
+                       {
+                           this.state.myBooks.length===0?<h5>No data</h5>:
+                           this.state.myBooks.map((book,idx)=>{
+                              return <div className="container">
+                              <div className="row">
+                               <h5 className="col-6"key={idx}>{book.book_name}</h5>
+                              <p className="col-6">
+                                  {book.isAccepted==="first"?<p>Pending</p>:
+                                  book.isAccepted===true?<p>Accepted</p>
+                                  :
+                                  <p>Rejected</p>}
+                              </p>
+                              </div>
+                              </div>
+                           })
+                       }
+                    </div>
+                    :
+                    <h5>Please login first</h5>
+
+                }
+                 </div>
+           
         )
     }
 }
