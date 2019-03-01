@@ -82,19 +82,18 @@ class SharedBookList extends React.Component {
   render() {
     console.log(this.state);
     return (
-      <din
+      <div
         style={{ fontFamily: "'Kaushan Script', cursive", fontSize: "25px" }}
       >
         {localStorage.getItem("token") ? (
-          <div className="row" style={{ padding: "10px" }}>
+          <div className="row" style={{ padding: "10px"}}>
             {this.state.books.length === 0 ? (
               <h5>No book in the list, share the book now</h5>
             ) : (
               this.state.books.reverse().map((book, idx) => {
                 return (
-                  <div className="col-lg-4 text-center">
-                    {" "}
-                    <Card key={idx}>
+                  <div className="col-lg-4 text-center" style={{display:"flex"}}>
+                    <Card key={idx} style={{flexWrap:"wrap"}}>
                       <Card.Img variant="top" src="book.png" />
                       <Card.Body>
                         <div className="container">
@@ -152,7 +151,7 @@ class SharedBookList extends React.Component {
                           </div>
                         </div>
                         {this.state.currentEmail === book.email ? (
-                          ""
+                        <div></div>
                         ) : (
                           <Button
                             variant="primary"
@@ -171,7 +170,7 @@ class SharedBookList extends React.Component {
         ) : (
           <h5>Please login first</h5>
         )}
-      </din>
+      </div>
     );
   }
 }

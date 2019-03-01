@@ -57,10 +57,10 @@ class Mybooks extends React.Component {
             <div style={{color:"#d39e00"}}>
                 {
                     localStorage.getItem('token')?
-                    <div style={{width:"100%",height:"100%",padding:"10px"}}>
+                    <div style={{display:"flex",justifyContent:"space-around" ,alignItems:"flex-start",alignContent:"space-around"}}>
                     {this.state.books.length===0?<h5>No data</h5>:
                         this.state.books.map(book=>{
-                         return <div>
+                         return <div style={{border:"1px solid #fff",flexWrap:"wrap"}}>
                              {
                                 <div>
                                     <div className="container">
@@ -74,7 +74,7 @@ class Mybooks extends React.Component {
                                         book.requested.length===0?<p style={{border:"1px solid #fff"}}>No request found</p>
                                         :
                                         book.requested.map(request=>{
-                                            return <div style={{border:"1px solid #fff",fontFamily: "'Kaushan Script', cursive", fontSize: "25px",color:"#d39e00" }}> 
+                                            return <div style={{fontFamily: "'Kaushan Script', cursive", fontSize: "25px",color:"#d39e00" ,display:"flex",flexWrap:"wrap"}}> 
                                                 <div className="container">
                                                     <div className="row">
                                                         <h5 className="col-6">Email:</h5>
