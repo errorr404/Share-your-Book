@@ -6,7 +6,8 @@ class SharedBookList extends React.Component {
     super();
     this.state = {
       books: [],
-      currentEmail: ""
+      currentEmail: "",
+      number:""
     };
   }
   handleRequest = id => {
@@ -81,6 +82,18 @@ class SharedBookList extends React.Component {
   }
   render() {
     console.log(this.state);
+    // this thing cause a lot of stucking thing
+    // var class_name
+    // window.addEventListener('resize',()=>{
+    //     if(window.innerWidth<991 && window.innerWidth>580) {
+    //       class_name="col-lg-6 text-center"
+    //       this.setState({number:Math.random()})
+    //     }
+    //     else {
+    //       class_name="col-lg-4 text-center"
+    //       this.setState({number:Math.random()})
+    //     }
+    // }) 
     return (
       <div
         style={{ fontFamily: "'Kaushan Script', cursive", fontSize: "25px" }}
@@ -92,7 +105,7 @@ class SharedBookList extends React.Component {
             ) : (
               this.state.books.reverse().map((book, idx) => {
                 return (
-                  <div className="col-lg-4 text-center" style={{display:"flex",paddingTop:"2%"}}>
+                  <div className="col-lg-4 text-center" style={{display:"flex",paddingBottom:"1%"}}>
                     <Card key={idx} style={{flexWrap:"wrap"}}>
                       <Card.Img variant="top" src="book.png" />
                       <Card.Body>
