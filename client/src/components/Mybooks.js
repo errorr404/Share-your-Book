@@ -57,10 +57,10 @@ class Mybooks extends React.Component {
             <div style={{color:"#d39e00"}}>
                 {
                     localStorage.getItem('token')?
-                    <div style={{display:"flex",justifyContent:"space-around" ,alignItems:"flex-start",alignContent:"space-around"}}>
+                    <div style={{display:"flex",justifyContent:"space-around" ,alignItems:"flex-start",alignContent:"space-around",flexWrap:"wrap"}}>
                     {this.state.books.length===0?<h5>No data</h5>:
                         this.state.books.map(book=>{
-                         return <div style={{border:"1px solid #fff",flexWrap:"wrap"}}>
+                         return <div style={{border:"1px solid #fff",alignSelf:"flex-start",padding:"25px"}}>
                              {
                                 <div>
                                     <div className="container">
