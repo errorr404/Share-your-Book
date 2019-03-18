@@ -58,15 +58,15 @@ class Myrequest extends React.Component {
                        {
                            this.state.myBooks.length===0?<h5>No data</h5>:
                            this.state.myBooks.map((book,idx)=>{
-                              return <div className="container">
+                              return <div className="container" key={idx}>
                               <div className="row">
                                <h5 className="col-6"key={idx}>{book.book_name}</h5>
-                              <p className="col-6">
+                              <div className="col-6">
                                   {book.isAccepted==="first"?<p>Pending</p>:
                                   book.isAccepted===true?<p>Accepted</p>
                                   :
                                   <p>Rejected</p>}
-                              </p>
+                              </div>
                               </div>
                               </div>
                            })
