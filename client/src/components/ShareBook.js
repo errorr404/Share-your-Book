@@ -15,7 +15,7 @@ class ShareBook extends React.Component {
     }
     handleShare = e =>{
         e.preventDefault()
-        axios.post('http://localhost:5000/postbook',{
+        axios.post('/postbook',{
             name:this.state.name,
             room_no:this.state.room_no,
             email:this.state.email,
@@ -44,7 +44,7 @@ class ShareBook extends React.Component {
     componentDidMount(){
         var id = localStorage.getItem('token')
         console.log(id)
-        axios.get('http://localhost:5000/me',
+        axios.get('/me',
         {
             params: {
               id:id

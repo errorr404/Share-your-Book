@@ -12,7 +12,7 @@ class Login extends React.Component {
     }
     handleLogin = e=>{
         e.preventDefault()
-        axios.post('http://localhost:5000/login',{
+        axios.post('/login',{
             email:this.state.email,
             password:this.state.password
         }).then(res=>{

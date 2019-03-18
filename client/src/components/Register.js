@@ -17,7 +17,7 @@ class Register extends React.Component{
         e.preventDefault()
         if(this.state.email&&this.state.full_name&&this.state.room_no && this.state.password && this.state.confirm_password){
             if(this.state.password === this.state.confirm_password){
-                axios.post('http://localhost:5000/register',{
+                axios.post('/register',{
                     name:this.state.full_name,
                     email:this.state.email,
                     room_no:this.state.room_no,

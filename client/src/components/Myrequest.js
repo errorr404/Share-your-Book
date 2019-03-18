@@ -9,7 +9,7 @@ class Myrequest extends React.Component {
     }
     componentDidMount(){
         var mycrurrentEmail=localStorage.getItem('email')
-        axios.get('http://localhost:5000/getmyrequestedbook',
+        axios.get('/getmyrequestedbook',
         {  params: {
             email:localStorage.getItem('email')
           }
@@ -19,7 +19,7 @@ class Myrequest extends React.Component {
             // console.log(res.data)
             // console.log('in did mount myrequest')
             var newBooks = res.data
-          axios.get('http://localhost:5000/getbooks').then(result=>{
+          axios.get('/getbooks').then(result=>{
             //   console.log(result.data)
             console.log(newBooks)
             console.log('-----------------------')

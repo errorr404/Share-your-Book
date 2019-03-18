@@ -11,7 +11,7 @@ class SharedBookList extends React.Component {
   }
   handleRequest = id => {
     axios
-      .put("http://localhost:5000/request", {
+      .put("/request", {
         id: id,
         email: this.state.currentEmail
       })
@@ -28,12 +28,12 @@ class SharedBookList extends React.Component {
     // e.preventDefault()
     console.log(id);
     axios
-      .put("http://localhost:5000/like", {
+      .put("/like", {
         id: id
       })
       .then(res => {
         if (res) {
-          axios.get("http://localhost:5000/getbooks").then(res => {
+          axios.get("/getbooks").then(res => {
             var books = res.data;
             // console.log(books)
             this.setState({ books: books });
@@ -47,12 +47,12 @@ class SharedBookList extends React.Component {
     // e.preventDefault()
     console.log(id);
     axios
-      .put("http://localhost:5000/dislike", {
+      .put("/dislike", {
         id: id
       })
       .then(res => {
         if (res) {
-          axios.get("http://localhost:5000/getbooks").then(res => {
+          axios.get("/getbooks").then(res => {
             var books = res.data;
             // console.log(books)
             this.setState({ books: books });
@@ -63,7 +63,7 @@ class SharedBookList extends React.Component {
       .catch(err => console.log(err));
   };
   componentDidMount() {
-    axios.get("http://localhost:5000/getbooks").then(res => {
+    axios.get("/getbooks").then(res => {
       var books = res.data;
       // console.log(books)
       this.setState({ books: books });
@@ -92,7 +92,7 @@ class SharedBookList extends React.Component {
             ) : (
               this.state.books.reverse().map((book, idx) => {
                 return (
-                  <div className="col-lg-4 text-center" style={{display:"flex"}}>
+                  <div className="col-lg-4 text-center" style={{display:"flex",paddingTop:"2%"}}>
                     <Card key={idx} style={{flexWrap:"wrap"}}>
                       <Card.Img variant="top" src="book.png" />
                       <Card.Body>

@@ -1,31 +1,13 @@
-const express = require('express')
+const express = require('express');
 const mongoose = require('mongoose')
-var bodyParser = require('body-parser');
-const cors  = require('cors')
+const router = express.Router();
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs');
 
-var SharableBooks = require('./model/SharableBooks')
-var User = require('./model/Users')
+var SharableBooks = require('../model/SharableBooks')
+var User = require('../model/Users')
 
-const app = express()
-
-app.use(bodyParser.urlencoded({ extended: false }))
-
-// parse application/json
-
-app.use(bodyParser.json())
-app.use(cors())
-
-mongoose.connect('mongodb://localhost:27017/bookData',({useNewUrlParser:true})).then(()=>console.log('connected to mongodb'))
-                                                                                .catch((err)=>console.log(err))
-
-app.get('/',(req,res)=>{
-    res.send('hello world')
-})
-
-// route for register
-app.post('/register',(req,res)=>{
+router.post('/register',(req,res)=>{
     User.findOne({email:req.body.email})
         .then(user_res=>{
             if(user_res){
@@ -53,7 +35,7 @@ app.post('/register',(req,res)=>{
 
 // route for login 
 
-app.post('/login',(req,res)=>{
+router.post('/login',(req,res)=>{
     console.log(req.body)
     User.findOne({email:req.body.email})
         .then(user_res=>{
@@ -75,7 +57,7 @@ app.post('/login',(req,res)=>{
 
 // get the current profile
 
-app.get('/me',(req,res)=>{
+router.get('/me',(req,res)=>{
     // console.log(req.query.id)
     var decoded = jwt.verify(req.query.id, 'abc123');
     var _id=decoded.id
@@ -92,7 +74,7 @@ app.get('/me',(req,res)=>{
 })
 
 
-app.post('/postbook',(req,res)=>{
+router.post('/postbook',(req,res)=>{
     console.log(req.body)
     var data = {
         name:req.body.name,
@@ -126,7 +108,7 @@ app.post('/postbook',(req,res)=>{
     // res.send('hwllo world')
 })
 
-app.get('/getmybook',(req,res)=>{
+router.get('/getmybook',(req,res)=>{
     console.log(req.query.email)
     SharableBooks.find({email:req.query.email})
                 .then(book=>{
@@ -139,7 +121,7 @@ app.get('/getmybook',(req,res)=>{
                 }).catch(err=>console.log(err))
 })
 
-app.get('/getbooks',(req,res)=>{
+router.get('/getbooks',(req,res)=>{
     SharableBooks.find()
                 .then(books=>{
                     if(books.length>0){
@@ -151,7 +133,7 @@ app.get('/getbooks',(req,res)=>{
                 })
 })
 
-app.put('/like',(req,res)=>{
+router.put('/like',(req,res)=>{
     var _id = req.body.id
     var liked
     SharableBooks.findById(_id).then(book=>{
@@ -171,7 +153,7 @@ app.put('/like',(req,res)=>{
     
 })
 
-app.put('/dislike',(req,res)=>{
+router.put('/dislike',(req,res)=>{
     var _id = req.body.id
     var liked
     SharableBooks.findById(_id).then(book=>{
@@ -192,7 +174,7 @@ app.put('/dislike',(req,res)=>{
     
 })
 
-app.put('/request',(req,res)=>{
+router.put('/request',(req,res)=>{
     var _id = req.body.id
     var user
     SharableBooks.findById(_id).then(book=>{
@@ -227,7 +209,7 @@ app.put('/request',(req,res)=>{
 
 })
 
-app.put('/updatebookrequest',(req,res)=>{
+router.put('/updatebookrequest',(req,res)=>{
     console.log(req.body)
     var requested=[]
     SharableBooks.findById(req.body.id).then(book=>{
@@ -250,11 +232,11 @@ app.put('/updatebookrequest',(req,res)=>{
     }).catch(err=>console.log(err))
 })
 
-app.get('/getmyrequestedbook',(req,res)=>{
+router.get('/getmyrequestedbook',(req,res)=>{
     User.findOne({email:req.query.email}).then(books=>{
         // console.log(books)
         return res.status(200).send(books.myrequestedbook)
     }).catch(err=>console.log(err))
 })
 
-app.listen(5000,()=>console.log('server is up'))
+module.exports = router

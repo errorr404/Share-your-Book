@@ -9,13 +9,13 @@ class Mybooks extends React.Component {
         }
     }
     handleAcceptRequest = (id,email)=>{
-        axios.put('http://localhost:5000/updatebookrequest',{
+        axios.put('/updatebookrequest',{
             id:id,
             isAccept:true,
             email:email
         }).then(res=>{
             console.log(res.data)
-            axios.get('http://localhost:5000/getmybook',{
+            axios.get('/getmybook',{
                 params: {
                   email:localStorage.getItem('email')
                 }
@@ -26,13 +26,13 @@ class Mybooks extends React.Component {
     }
 
     handleRejectRequest = (id,email) =>{
-        axios.put('http://localhost:5000/updatebookrequest',{
+        axios.put('/updatebookrequest',{
             id:id,
             isAccept:false,
             email:email
         }).then(res=>{
             console.log(res.data)
-            axios.get('http://localhost:5000/getmybook',{
+            axios.get('/getmybook',{
                 params: {
                   email:localStorage.getItem('email')
                 }
@@ -43,7 +43,7 @@ class Mybooks extends React.Component {
     }
    componentDidMount(){
        console.log('in component did mount')
-       axios.get('http://localhost:5000/getmybook',{
+       axios.get('/getmybook',{
         params: {
           email:localStorage.getItem('email')
         }
