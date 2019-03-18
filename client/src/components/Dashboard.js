@@ -45,7 +45,7 @@ class Dashboard extends React.Component {
           // </div>
           <div style={{fontFamily:"'Pacifico', cursive",fontSize:"25px"}}>
               <Navbar bg="light" variant="light" fixed="top" collapseOnSelect expand="lg">
-    <Navbar.Brand className="mr-auto" style={{fontFamily:"'Pacifico', cursive",fontSize:"25px"}}>
+    <Navbar.Brand className="mr-auto" style={{fontFamily:"'Pacifico', cursive",fontSize:"25px",paddingRight:"20px"}}>
     Book World
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -55,7 +55,7 @@ class Dashboard extends React.Component {
       <Nav.Link href="myrequested">Mybooks</Nav.Link>
       <Nav.Link href="bookrequest">Requested Books</Nav.Link>
       </Nav> */}
-      <Navbar.Collapse id="responsive-navbar-nav">
+      <Navbar.Collapse id="responsive-navbar-nav" >
       <Nav className="mr-auto">
       <Link to="/booklist">
       <NavItem>

@@ -60,7 +60,7 @@ class Mybooks extends React.Component {
                     <div style={{display:"flex",justifyContent:"space-around" ,alignItems:"flex-start",alignContent:"space-around",flexWrap:"wrap"}}>
                     {this.state.books.length===0?<h5>No data</h5>:
                         this.state.books.map(book=>{
-                         return <div style={{border:"1px solid #fff",alignSelf:"flex-start",padding:"25px"}}>
+                         return <div style={{border:"1px solid #fff",alignSelf:"flex-start",paddingTop:"20px"}}>
                              {
                                 <div>
                                     <div className="container">
@@ -92,7 +92,7 @@ class Mybooks extends React.Component {
                                                         <Button className="col-2" variant="primary" style={{float:"right",paddingRight:"10%",textAlign:"center"}} onClick={e=>this.handleAcceptRequest(book._id,request.email)}>Accept</Button>
                                                         </div>
                                                         :
-                                                        request.isAccepted===true?
+                                                        request.isAccepted && request.isAccepted===true?
                                                         <h5>Accepted the request</h5>
                                                         :
                                                         <h5>Rejected the request</h5>
