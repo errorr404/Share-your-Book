@@ -96,7 +96,7 @@ class SharedBookList extends React.Component {
     // }) 
     return (
       <div
-        style={{ fontFamily: "'Kaushan Script', cursive", fontSize: "25px" }}
+        style={{ fontFamily: "'Kaushan Script', cursive", fontSize: "25px",display:"flex",flexWrap:"wrap" }}
       >
         {localStorage.getItem("token") ? (
           <div className="row" style={{ padding: "10px"}}>
@@ -105,7 +105,7 @@ class SharedBookList extends React.Component {
             ) : (
               this.state.books.reverse().map((book, idx) => {
                 return (
-                  <div className="col-lg-4 text-center" style={{display:"flex",paddingBottom:"1%"}}>
+                  <div className="col-sm-6 col-lg-4 text-center" style={{display:"flex",paddingBottom:"1%"}}>
                     <Card key={idx} style={{flexWrap:"wrap"}}>
                       <Card.Img variant="top" src="book.png" />
                       <Card.Body>
